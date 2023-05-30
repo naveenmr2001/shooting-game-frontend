@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap');
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Mukta', sans-serif;
+}
+
+.mainContainer{
+    background-image: url("../../static/images/main.png");
+    background-size:cover;
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2.5rem;
+}
+
+.Header {
+    font-family: Impact, Arial, sans-serif;
+    font-size: 36px;
+    color: #FDBB3A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+.Header h1{
+    font-size:5rem;
+}
+
+.StartButton i{
+    cursor: pointer;
+    font-size:4rem;
+    color:black;
+}
+
+.StartButton i:hover{
+    transform: scale(1.2);
+}
+
+.instruction h1{
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: #FDBB3A;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.instruction .instruction-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:1.2rem;
+}
+
+.instruction .instruction-content span{
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bolder;
+    text-transform: uppercase;
+    line-height: 1.5;
+    text-align: center;
+}
