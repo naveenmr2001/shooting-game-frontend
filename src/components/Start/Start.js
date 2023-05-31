@@ -12,7 +12,7 @@ const Start = () => {
                 <h1>Arsenal Assault</h1>
             </div>
             <div className='StartButton'>
-                <i class="fa-solid fa-circle-play fa-2xl" data-testid="buttonClick" onClick={()=>navigate("/game")}></i>
+                <i className="fa-solid fa-circle-play fa-2xl" data-testid="buttonClick" onClick={()=>navigate("/game")}></i>
             </div>
             <div data-testid="instruction-test" className='instruction'>
                 <h1>instruction</h1>

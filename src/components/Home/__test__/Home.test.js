@@ -1,9 +1,8 @@
 import {fireEvent, render,screen, waitFor} from '@testing-library/react';
 import Home from '../Home';
+import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 
 const MockHome = () =>{
     return(
@@ -96,27 +95,58 @@ it("Should have armour button for villan in the villan section",async ()=>{
 
 it("should check the fetch api of getHealth Of Hero",async ()=>{
     await act( async () => render(<MockHome/>));
-    const heroHealth = await screen.findByTestId("HeroHealth")  
+    const heroHealth = await screen.findByTestId("HeroHealthValue")  
     screen.debug(heroHealth);
     await waitFor(()=>{
-        expect(heroHealth.value).toBe("100");
+        expect(heroHealth.innerHTML).toBe("100");
     })
 })
 
 it("should check the fetch api of getHealth of Villan",async ()=>{
     await act( async () => render(<MockHome/>));
-    const villanHealth = await screen.findByTestId("VillanHealth")  
+    const villanHealth = await screen.findByTestId("VillanHealthValue")  
     screen.debug(villanHealth);
     await waitFor(()=>{
-        expect(villanHealth.value).toBe("100");
+        expect(villanHealth.innerHTML).toBe("100");
     })
 })
 
 it("should check the post request of hero",async ()=>{
-    const mockAdapter = new MockAdapter(axios);
-    mockAdapter.onPost('http://localhost:8080/api/shoot').expectedStatusCode(201);
     await act( async () => render(<MockHome/>));
-    expect(mockAdapter.history.get.length).toBe(1);
-    const response = await axios.get('http://localhost:8080/api/shoot');
-    expect(response.status).toBe(201);
+    const response = await axios.post("http://localhost:8080/api/shoot",{},{params:{
+        heroOrVillan:"Hero"
+    }});
+    await waitFor(()=>{
+        expect(response.data).toBe("Success Of Hero");
+        expect(response.status).toBe(201);
+    })
+})
+
+it("should check the post request of villan",async ()=>{
+    await act( async () => render(<MockHome/>));
+    const response = await axios.post("http://localhost:8080/api/shoot",{},{params:{
+        heroOrVillan:"Villan"
+    }});
+    await waitFor(()=>{
+        expect(response.data).toBe("Success Of Villan");
+        expect(response.status).toBe(201);
+    })
+})
+
+it("should check the post request of armour",async ()=>{
+    await act( async () => render(<MockHome/>));
+    const response = await axios.post("http://localhost:8080/api/armour",{});
+    await waitFor(()=>{
+        expect(response.data).toBe("Success Of Armour");
+        expect(response.status).toBe(201);
+    })
+})
+
+it("should check the post request of reset",async ()=>{
+    await act( async () => render(<MockHome/>));
+    const response = await axios.post("http://localhost:8080/api/reset",{});
+    await waitFor(()=>{
+        expect(response.data).toBe("Success Of Reset");
+        expect(response.status).toBe(201);
+    })
 })
